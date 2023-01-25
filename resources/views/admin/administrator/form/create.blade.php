@@ -1,0 +1,73 @@
+<style>
+    .choices__inner {
+        background-color: white;
+        border: 1px solid #dce7f1;
+        padding: .225rem .2rem;
+        font-size: 16px;
+    }
+</style>
+<div class="modal fade modal-lg" id="form-admin-create" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLongTitle">
+                    Tambah Admin
+                </h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form form-vertical" action="{{ route('admin.tambah_admin') }}" method="POST"
+                    autocomplete="off">
+                    @csrf
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <div class="form-group">
+                                    <label>Nama Lengkap</label>
+                                    <input type="text" class="form-control" name="fullname"
+                                        placeholder="Nama Lengkap" />
+                                </div>
+                            </div>
+
+                            <div class="col-12 mb-4">
+                                <div class="form-group">
+                                    <label>Nama Pengguna</label>
+                                    <input type="text" class="form-control" name="username"
+                                        placeholder="Nama Pengguna" required />
+                                </div>
+                            </div>
+
+                            <div class="col-12 mb-4">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" name="password" placeholder="Password"
+                                        required autocomplete="new-password" />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Close</span>
+                </button>
+
+                <button type="submit" class="btn btn-primary ml-2 ms-2">
+                    <i class="bx bx-check d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Tambah admin
+                        <i class="bi bi-plus-lg ms-1"></i>
+                    </span>
+                </button>
+            </div>
+
+            </form>
+        </div>
+    </div>
+</div>
