@@ -8,14 +8,9 @@
 
     <link rel="shortcut icon" href="/assets/images/logo/favicon.svg" type="image/x-icon" />
     <link rel="shortcut icon" href="/assets/images/logo/favicon.png" type="image/png">
-
-
     <link rel="stylesheet" href="/assets/css/main/app.css" />
     <link rel="stylesheet" href="/assets/css/main/app-dark.css" />
-    <link rel="shortcut icon" href="/assets/images/logo/favicon.svg" type="image/x-icon" />
-    <link rel="shortcut icon" href="/assets/images/logo/favicon.png" type="image/png" />
     <link rel="stylesheet" href="/assets/extensions/choices.js/public/assets/styles/choices.css">
-
     <link rel="stylesheet" href="/assets/extensions/simple-datatables/style.css" />
     <link rel="stylesheet" href="/assets/css/pages/simple-datatables.css" />
 
@@ -26,6 +21,11 @@
             padding: 3px;
             position: absolute;
             right: 20px;
+        }
+
+        .scroll {
+            inline-size: 150px;
+            overflow-wrap: break-word;
         }
     </style>
 </head>
@@ -38,7 +38,9 @@
         ->where('status', 'Belum Dibaca')
         ->get();
     use App\Models\Pemberitahuan;
-    $pemberitahuan = Pemberitahuan::all();
+    $pemberitahuan = Pemberitahuan::orderBy('id', 'DESC')
+        ->take(5)
+        ->get();
 @endphp
 
 
@@ -187,29 +189,23 @@
                                                     </a>
                                                 </li>
                                             @else
-                                                @foreach ($pemberitahuan as $p)
-                                                    <li class="dropdown-item">
-
-
-
-
-                                                        <button class="dropdown-item" type="submit">
-                                                            <div class="row  align-items-center">
-
-                                                                <div class="col-6">
-
-                                                                    <p class="mb-0 text-custx">{{ $p->isi }}
-                                                                    </p>
-                                                                </div>
+                                                @foreach ($pemberitahuan as $infoPemberitahuan)
+                                                    <li class="dropdown-item notification-item">
+                                                        <a class="d-flex align-items-center" href="#">
+                                                            <div class="notification-icon bg-primary">
+                                                                <i class="bi bi-bell-fill align-middle"></i>
                                                             </div>
-                                                        </button>
+                                                            <div class="notification-text ms-4">
+
+                                                                <p class="notification-subtitle font-thin text-sm">
+                                                                    {{ $infoPemberitahuan->isi }}
+                                                                    {{-- {{ $infoPemberitahuan->isi }} --}}
+                                                                </p>
+                                                            </div>
+                                                        </a>
                                                     </li>
                                                 @endforeach
                                             @endif
-
-
-
-
                                         </ul>
                                     </li>
 

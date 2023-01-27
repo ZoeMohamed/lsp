@@ -23,6 +23,7 @@ Route::get('/', function () {
 Auth::routes();
 
 
+
 Route::get('/home', function () {
     if (Auth::user()->role == 'admin') {
 
@@ -32,6 +33,7 @@ Route::get('/home', function () {
         return redirect()->route('user.dashboard');
     }
 })->middleware('auth');
+
 
 Route::group(['middleware' => 'auth',], function () {
     // User Route

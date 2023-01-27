@@ -37,8 +37,8 @@
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text"
                                 class="form-control form-control-xl @error('username') is-invalid @enderror"
-                                placeholder="Username" name="username" value="{{ old('username') }}" required autofocus
-                                autocomplete="username" />
+                                placeholder="Username" name="username" value="{{ old('username') }}" required
+                                autocomplete="new-password" />
                             <div class="form-control-icon">
                                 <i class="bi bi-person"></i>
                             </div>

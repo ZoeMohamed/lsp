@@ -28,9 +28,9 @@
 <div class="row">
     <div style="position:relative;">
         <div style="position:absolute; left:37px; top:15px; width:200px;">
-            {{-- <img src="{{ public_path('assets/images/faces/1.jpg') }}" width="35%" class="" alt="Logo-Intek"
+            {{-- <img src="{{ public_path('assets/images/faces/1.jpg') }}" width="35%" class="" alt="Logo_App"
             style="border-radius:50%" /> --}}
-            <img src="{{ public_path($identitas->foto) }}" width="35%" class="" alt="Logo-Intek"
+            <img src="{{ public_path($identitas->foto) }}" width="35%" class="" alt="Logo_APP"
                 style="border-radius:50%" />
         </div>
         <div style="margin-left:11px; text-align:center; font-family:sans-serif">

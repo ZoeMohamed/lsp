@@ -14,6 +14,12 @@ class IdentitasController extends Controller
 
         return view('admin.identitas.index', compact('data'));
     }
+
+
+
+
+
+
     public function update_identitas(Request $request)
     {
 

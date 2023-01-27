@@ -1,6 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
+    {{-- Scrollable --}}
+
+
+    <style>
+        .scrollable {
+            max-height: 400px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
     @php
         use App\Models\Pemberitahuan;
         $pemberitahuan = Pemberitahuan::all();
@@ -101,8 +132,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-xl-12">
+        {{-- <div class="row">
+            <div class="col-12 col-xl-12 ">
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
@@ -114,7 +145,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive scrollable">
                             <table class="table table-hover table-lg">
                                 <thead>
                                     <tr>
@@ -139,6 +170,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
 @endsection
