@@ -68,7 +68,26 @@ class BukuController extends Controller
 
         // Creating Data
         try {
-            $buku  = Buku::create($request->all());
+            // If Foto not null
+            if ($request->foto != null) {
+                $imageName = time() . '.' . $request->foto->extension();
+
+                $request->foto->move(public_path('img'), $imageName);
+
+                $buku  = Buku::create([
+                    'judul' => $request->judul,
+                    'kategori_id' => $request->kategori_id,
+                    'penerbit_id' => $request->penerbit_id,
+                    'pengarang' => $request->pengarang,
+                    'tahun_terbit' => $request->tahun_terbit,
+                    'isbn' => $request->isbn,
+                    'j_buku_baik' => $request->j_buku_baik,
+                    'j_buku_rusak' => $request->j_buku_rusak,
+                    'foto' => '/img/' . $imageName
+                ]);
+            } else {
+                $buku  = Buku::create($request->all());
+            }
         } catch (Exception $e) {
 
             return response()->json(
@@ -95,6 +114,7 @@ class BukuController extends Controller
             $data['isbn'] = $book->isbn;
             $data['j_buku_baik'] = $book->j_buku_baik;
             $data['j_buku_rusak'] = $book->j_buku_rusak;
+            $data['foto'] = $book->foto;
         }
         return response()->json(
             [
@@ -134,27 +154,62 @@ class BukuController extends Controller
             );
         }
 
-        $book = tap(Buku::with('kategori', 'penerbit')->where('id', $id))
-            ->update($request->all())
-            ->first();
+        $book_id = Buku::find($id);
 
-        $data = [];
+        if ($book_id != null) {
 
-        $data['id'] = $book->id;
-        $data['judul'] = $book->judul;
-        $data['kategori'] = $book->kategori->nama;
-        $data['penerbit'] = $book->penerbit->nama;
-        $data['pengarang'] = $book->pengarang;
-        $data['tahun_terbit'] = $book->tahun_terbit;
-        $data['isbn'] = $book->isbn;
-        $data['j_buku_baik'] = $book->j_buku_baik;
-        $data['j_buku_rusak'] = $book->j_buku_rusak;
 
+            if ($request->foto != null) {
+                $imageName = time() . '.' . $request->foto->extension();
+
+                $request->foto->move(public_path('img'), $imageName);
+                $book = tap(Buku::with('kategori', 'penerbit')->where('id', $id))
+                    ->update([
+
+                        'judul' => $request->judul,
+                        'kategori_id' => $request->kategori_id,
+                        'penerbit_id' => $request->penerbit_id,
+                        'pengarang' => $request->pengarang,
+                        'tahun_terbit' => $request->tahun_terbit,
+                        'isbn' => $request->isbn,
+                        'j_buku_baik' => $request->j_buku_baik,
+                        'j_buku_rusak' => $request->j_buku_rusak,
+                        'foto' => '/img/' . $imageName
+
+                    ])
+                    ->first();
+            } else {
+                $book = tap(Buku::with('kategori', 'penerbit')->where('id', $id))
+                    ->update($request->all())
+                    ->first();
+            }
+
+            $data = [];
+
+            $data['id'] = $book->id;
+            $data['judul'] = $book->judul;
+            $data['kategori'] = $book->kategori->nama;
+            $data['penerbit'] = $book->penerbit->nama;
+            $data['pengarang'] = $book->pengarang;
+            $data['tahun_terbit'] = $book->tahun_terbit;
+            $data['isbn'] = $book->isbn;
+            $data['j_buku_baik'] = $book->j_buku_baik;
+            $data['j_buku_rusak'] = $book->j_buku_rusak;
+            $data['foto'] = $book->foto;
+
+
+            return response()->json(
+                [
+                    "message" => "Succsess Update Data",
+                    "data" => $data
+                ]
+            );
+        }
 
         return response()->json(
             [
-                "message" => "Succsess Update Data",
-                "data" => $data
+                "message" => "Data not found",
+
             ]
         );
     }
