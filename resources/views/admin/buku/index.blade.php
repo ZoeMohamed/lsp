@@ -54,7 +54,8 @@
 
                                     <td class="align-middle">{{ $loop->iteration }}</td>
                                     <td class="align-middle">
-                                        <img src="{{ $b->foto }}" alt="">
+                                        <img src="{{ $b->foto ?? '/assets/images/not-found.png' }}" alt=""
+                                            width="100" height="100">
                                     </td>
 
                                     <td class="align-middle">{{ $b->judul }}</td>

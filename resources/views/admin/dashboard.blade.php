@@ -132,15 +132,31 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-12 text-center mt-4">
+
+            @php
+                use App\Models\Identitas;
+                $identitas = Identitas::first();
+
+            @endphp
+            <img src="{{ $identitas->foto }}" alt="" width="300" height="300" class="mb-5">
+            <h5 class="mb-4">{{ $identitas->nama_app }}</h5>
+            <h5 class="mb-4">{{ $identitas->email_app }}</h5>
+            <h5 class="mb-4">{{ $identitas->no_hp }}</h5>
+            <h5 class="mb-4">{{ $identitas->alamat_app }}</h5>
+        </div>
+
+
         {{-- <div class="row">
             <div class="col-12 col-xl-12 ">
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-10">
-                                <h4>Pemberitahuan</h4>
+                                <h6>Pemberitahuan</h6>
                             </div>
-                            <div class="col-2 d-flex justify-content-end">
+                            <div class="col-4 d-flex justify-content-end">
                             </div>
                         </div>
                     </div>

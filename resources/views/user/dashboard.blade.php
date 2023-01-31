@@ -27,8 +27,8 @@
                                         {{ $b->kategori->nama }}
                                     </span>
 
-                                    <p class="mt-3 mb-1">Penerbit : {{ $b->penerbit->nama }}</p>
-                                    <p>Pengarang : {{ $b->pengarang }}</p>
+                                    <p class="mt-3 mb-1 fw-bold">Penerbit : {{ $b->penerbit->nama }}</p>
+                                    <p class="mb-1 fw-bold">Pengarang : {{ $b->pengarang }}</p>
                                     <hr>
                                     <form action="{{ route('user.form_peminjaman_dashboard') }}" method="POST">
 

@@ -56,7 +56,7 @@ class BukuController extends Controller
                     'isbn' => $request->isbn ?? "",
                     'j_buku_baik' => $request->j_buku_baik,
                     'j_buku_rusak' => $request->j_buku_rusak,
-                    "foto" => ""
+                    // "foto" => ""
                 ]);
             }
         } catch (Exception $e) {
