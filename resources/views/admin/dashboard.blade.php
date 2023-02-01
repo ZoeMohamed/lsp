@@ -140,7 +140,8 @@
                 $identitas = Identitas::first();
 
             @endphp
-            <img src="{{ $identitas->foto }}" alt="" width="300" height="300" class="mb-5">
+            <img src="{{ $identitas->foto ?? '/assets/images/not-found.png' }}" alt="" width="300" height="300"
+                class="mb-5">
             <h5 class="mb-4">{{ $identitas->nama_app }}</h5>
             <h5 class="mb-4">{{ $identitas->email_app }}</h5>
             <h5 class="mb-4">{{ $identitas->no_hp }}</h5>

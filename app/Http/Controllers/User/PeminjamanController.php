@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Buku;
+use App\Models\Pemberitahuan;
 use App\Models\Peminjaman;
 use Exception;
 use Illuminate\Http\Request;
@@ -52,6 +53,16 @@ class PeminjamanController extends Controller
         ]);
 
         try {
+
+            $unique_buku = Peminjaman::where('user_id', Auth::user()->id)->where('buku_id', $request->buku_id)->where('tanggal_pengembalian', null)->first();
+
+
+
+            if ($unique_buku != null) {
+                return redirect()->route('user.peminjaman.index')->with('status', 'danger')->with('message', 'Gagal Meminjam Buku Tidak bisa meminjam buku dengan judul yang sama');
+            }
+
+
             Peminjaman::create([
                 'user_id'   => Auth::user()->id,
                 'buku_id' => $request->buku_id,
@@ -63,7 +74,10 @@ class PeminjamanController extends Controller
             // Jalankan If jika stock masih adai
             $buku = Buku::where('id', $request->buku_id)->first();
 
+
+
             if ($buku->j_buku_baik >= 1 && $buku->j_buku_rusak >= 1) {
+
                 if ($request->kondisi_buku_saat_dipinjam == 'baik') {
 
                     $buku = Buku::where('id', $request->buku_id)->first();
@@ -82,6 +96,12 @@ class PeminjamanController extends Controller
 
                     ]);
                 }
+
+                // Update Pemberitahuan
+                Pemberitahuan::create([
+                    "isi" => Auth::user()->username . " Berhasil Meminjam Buku " . $buku->judul,
+                    "status" => "aktif"
+                ]);
                 return redirect()->route('user.peminjaman.index')->with('status', 'success')->with('message', 'Berhasil Meminjam Buku');
             } else {
                 return redirect()->route('user.peminjaman.index')->with('status', 'danger')->with('message', "Gagal Meminjam Buku Stock Habis");

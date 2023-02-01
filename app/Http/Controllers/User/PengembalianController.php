@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Buku;
+use App\Models\Pemberitahuan;
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,12 +48,13 @@ class PengembalianController extends Controller
             ->where('tanggal_pengembalian', null)
             ->first();
 
+
         $cek->update([
             'tanggal_pengembalian'  => $request->tanggal_pengembalian,
             'kondisi_buku_saat_dikembalikan' => $request->kondisi_buku_saat_dikembalikan
         ]);
 
-        if ($request->kondisi_buku_saat_dikembalikan == 'baik' && $cek->kondisi_buku_saat_dipinjam == "baik" && $cek->denda == null) {
+        if ($request->kondisi_buku_saat_dikembalikan == 'baik' && $cek->kondisi_buku_saat_dipinjam == "baik") {
             $buku = Buku::where('id', $request->buku_id)->first();
 
             $buku->update([
@@ -98,9 +100,15 @@ class PengembalianController extends Controller
         }
 
         if (!$cek) {
-
             return redirect()->back()->with('status', 'danger')->with('message', "Gagal Mengemalikan buku");
         }
+        $buku = Buku::where('id', $request->buku_id)->first();
+
+        // Update Pemberitahuan
+        Pemberitahuan::create([
+            "isi" => Auth::user()->username . " Berhasil Mengembalikan Buku " . $buku->judul,
+            "status" => "aktif"
+        ]);
         return redirect()->route('user.pengembalian')->with('status', 'success')->with('message', 'Berhasil Mengembalikan Buku');
     }
 }

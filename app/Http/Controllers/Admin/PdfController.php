@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Models\Identitas;
 use App\Models\Peminjaman;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class PdfController extends Controller
@@ -35,9 +37,7 @@ class PdfController extends Controller
 
         $identitas = Identitas::find(1)->get()[0];
 
-
-
-
+        dd($request->excel);
 
         $pdf = PDF::loadView('admin.pdf.peminjaman', [
             'datas' => $query,
@@ -45,7 +45,10 @@ class PdfController extends Controller
         ]);
 
 
-        return $pdf->download('peminjaman.pdf');
+        return Excel::download(new UsersExport, 'users.xlsx');
+
+
+        // return $pdf->download('peminjaman.pdf');
     }
 
     public function download_pengembalian(Request $request)

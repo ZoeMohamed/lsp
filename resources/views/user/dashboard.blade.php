@@ -18,7 +18,6 @@
                     <div class="col-xl-3 col-md-6 col-sm-12">
                         <div class="card h-100">
                             <div class="card-content">
-
                                 <img src="{{ $b->foto ?? '/assets/images/not-found.png' }}" class="card-img-top "
                                     alt="singleminded" style="height: 220px;object-fit: cover;">
                                 <div class="card-body">
