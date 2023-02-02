@@ -28,12 +28,11 @@
                                 </div>
 
                                 <div class="">
-                                    <button class="btn btn-danger col-12 mb-3" name="pdf" value="pdf">
+                                    <button class="btn btn-danger col-12 mb-3" name="file" value="pdf">
                                         Export To PDF
                                     </button>
 
-                                    <button class="btn btn-success col-12 mt-1">
-                                        <input type="hidden" value="excel" name="excel" value="excel">
+                                    <button class="btn btn-success col-12 mt-1" name="file" value="excel">
                                         Export To Excel
                                     </button>
                                 </div>

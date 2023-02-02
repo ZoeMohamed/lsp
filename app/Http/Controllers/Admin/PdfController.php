@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exports\UsersExport;
+use App\Exports\ExcelExport;
+use App\Exports\PeminjamanExport;
 use App\Http\Controllers\Controller;
 use App\Models\Identitas;
 use App\Models\Peminjaman;
@@ -37,18 +38,19 @@ class PdfController extends Controller
 
         $identitas = Identitas::find(1)->get()[0];
 
-        dd($request->excel);
+        if ($request->file == 'pdf') {
 
-        $pdf = PDF::loadView('admin.pdf.peminjaman', [
-            'datas' => $query,
-            'identitas' => $identitas
-        ]);
+            $pdf = PDF::loadView('admin.pdf.peminjaman', [
+                'datas' => $query,
+                'tanggal_peminjaman' => $request->tanggal_peminjaman,
+                'identitas' => $identitas
+            ]);
 
+            return $pdf->stream('peminjaman.pdf');
+        } else if ($request->file == 'excel') {
 
-        return Excel::download(new UsersExport, 'users.xlsx');
-
-
-        // return $pdf->download('peminjaman.pdf');
+            return Excel::download(new PeminjamanExport($request->tanggal_peminjaman), 'peminjaman.xlsx');
+        }
     }
 
     public function download_pengembalian(Request $request)
@@ -62,7 +64,8 @@ class PdfController extends Controller
 
         $pdf = PDF::loadView('admin.pdf.pengembalian', [
             'datas' => $query,
-            'identitas' => $identitas
+            'identitas' => $identitas,
+            'tanggal_pengembalian'
 
         ]);
 

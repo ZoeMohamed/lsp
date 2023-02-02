@@ -42,37 +42,69 @@
                 {{ $identitas->nomor_hp }}
             </p>
         </div>
+
     </div>
 
     <hr>
     <br />
 
+
+
+
+
     <h3 style="text-align: center; font-family:sans-serif;"><span class="border border-dark">Laporan Peminjaman
             Buku</span>
     </h3>
 
+    @if (count($datas) != 0)
 
-    <table class="center">
-        <thead>
-            <th>No</th>
-            <th>Nama Anggota</th>
-            <th>Judul Buku</th>
-            <th>Tanggal Peminjaman</th>
-            <th>Tanggal Pengembalian</th>
-        </thead>
-        <tbody>
-            @foreach ($datas as $d)
+        <table class="center">
+            <thead>
+                <th>No</th>
+                <th>Nama Anggota</th>
+                <th>Judul Buku</th>
+                <th>Tanggal Peminjaman</th>
+                <th>Tanggal Pengembalian</th>
+                <th>Denda</th>
+            </thead>
+            <tbody>
+                @foreach ($datas as $d)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $d->user->fullname }}</td>
+                        <td>{{ $d->buku->judul }}</td>
+                        <td>{{ $d->tanggal_peminjaman }}</td>
+                        <td>{{ $d->tanggal_pengembalian }}</td>
+                        <td>{{ $d->denda }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <h5 style="text-align:center;margin-top:25px;">Laporan Peminjaman : {{ $tanggal_peminjaman }}</h5>
+    @else
+        <table class="center">
+            <thead>
+                <th>No</th>
+                <th>Nama Anggota</th>
+                <th>Judul Buku</th>
+                <th>Tanggal Peminjaman</th>
+                <th>Tanggal Pengembalian</th>
+            </thead>
+            <tbody>
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $d->user->fullname }}</td>
-                    <td>{{ $d->buku->judul }}</td>
-                    <td>{{ $d->tanggal_peminjaman }}</td>
-                    <td>{{ $d->tanggal_pengembalian }}</td>
+                    <td colspan="5" style="text-align:center;">Datas Not Found</td>
+
                 </tr>
-            @endforeach
-        </tbody>
+            </tbody>
 
 
-    </table>
+        </table>
+
+        <h5 style="text-align:center;margin-top:25px;">Laporan Peminjaman : {{ $tanggal_peminjaman }}</h5>
+
+
+
+    @endif
+
 
 </div>

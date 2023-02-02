@@ -28,9 +28,11 @@
                                 <div class="form-group">
                                     <label>Kategori Buku</label>
                                     <select class="form-select choices" name="kategori_id" required>
-                                        <option value="" selected disabled>--Pilih Opsi--</option>
+                                        {{-- <option value="" selected>--Pilih Opsi--</option> --}}
                                         @foreach ($kategoris as $k)
-                                            <option value="{{ $k->id }}">{{ $k->nama }}</option>
+                                            <option value="{{ $k->id }}"
+                                                {{ $k->id == $b->kategori->id ? 'selected' : '' }}>
+                                                {{ $k->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -68,9 +70,10 @@
                                 <div class="form-group">
                                     <label>Penerbit</label>
                                     <select class="form-select choices" name="penerbit_id" required>
-                                        <option value="" selected disabled>--Pilih Opsi--</option>
                                         @foreach ($penerbits as $p)
-                                            <option value="{{ $p->id }}">{{ $p->nama }}</option>
+                                            <option value="{{ $p->id }}"
+                                                {{ $p->id == $b->penerbit->id ? 'selected' : '' }}>
+                                                {{ $p->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>

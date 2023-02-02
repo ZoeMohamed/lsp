@@ -108,6 +108,7 @@ class UserController extends Controller
             );
         }
 
+
         $last_login = Carbon::now();
 
         $user = tap(User::where('id', Auth::user()->id))
@@ -115,6 +116,9 @@ class UserController extends Controller
                 ['terakhir_login' => $last_login]
             )
             ->first();
+
+
+
 
         return response()->json(
             [
