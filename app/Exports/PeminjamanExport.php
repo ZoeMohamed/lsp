@@ -24,11 +24,20 @@ class PeminjamanExport implements FromQuery,  WithMapping, WithHeadings, WithCus
 
     protected $index = 1;
 
+    private $nama_app;
+    private $alamat_app;
+    private $email_app;
+    private $nomor_hp;
 
 
-    public function __construct($tanggal_peminjaman)
+
+    public function __construct($tanggal_peminjaman, $identitas)
     {
         $this->tanggal_peminjaman = $tanggal_peminjaman;
+        $this->nama_app = $identitas->nama_app;
+        $this->alamat_app = $identitas->alamat_app;
+        $this->email_app = $identitas->email_app;
+        $this->nomor_hp = $identitas->nomor_hp;
     }
 
     public function map($peminjamans): array
@@ -68,7 +77,7 @@ class PeminjamanExport implements FromQuery,  WithMapping, WithHeadings, WithCus
 
     public function startCell(): string
     {
-        return 'B3';
+        return 'B8';
     }
 
     public function registerEvents(): array
@@ -81,36 +90,68 @@ class PeminjamanExport implements FromQuery,  WithMapping, WithHeadings, WithCus
                 $event->sheet->getDelegate()->mergeCells('B1:G1');
 
                 $event->sheet->getStyle('B1:G1')->getFont()
-                    ->setSize(16)
+                    ->setSize(17)
                     ->setBold(true)
                     ->getColor()->setRGB('#000');
 
-                $event->sheet->getStyle('B')
+                $event->sheet->setCellValue('B2', $this->tanggal_peminjaman)->getStyle('B2:G2')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+                $event->sheet->getDelegate()->mergeCells('B2:G2');
 
-                $event->sheet->getStyle('C')
+
+                $event->sheet->getStyle('B2:G2')->getFont()
+                    ->setSize(15)
+                    ->setBold(true)
+                    ->getColor()->setRGB('#000');
+
+
+                $event->sheet->setCellValue('B3', $this->nama_app)->getStyle('B3:G3')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+                $event->sheet->getDelegate()->mergeCells('B3:G3');
 
 
-                $event->sheet->getStyle('D')
+                $event->sheet->getStyle('B3:G3')->getFont()
+                    ->setSize(13)
+                    ->setBold(false)
+                    ->getColor()->setRGB('#000');
+
+
+                $event->sheet->setCellValue('B4', $this->alamat_app)->getStyle('B4:G4')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+                $event->sheet->getDelegate()->mergeCells('B4:G4');
 
 
-                $event->sheet->getStyle('E')
+                $event->sheet->getStyle('B4:G4')->getFont()
+                    ->setSize(13)
+                    ->setBold(false)
+                    ->getColor()->setRGB('#000');
+
+
+                $event->sheet->setCellValue('B5', $this->email_app)->getStyle('B5:G5')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+                $event->sheet->getDelegate()->mergeCells('B5:G5');
 
-                $event->sheet->getStyle('F')
+
+                $event->sheet->getStyle('B5:G5')->getFont()
+                    ->setSize(13)
+                    ->setBold(false)
+                    ->getColor()->setRGB('#000');
+
+
+                $event->sheet->setCellValue('B6', $this->nomor_hp)->getStyle('B6:G6')
                     ->getAlignment()
                     ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+                $event->sheet->getDelegate()->mergeCells('B6:G6');
 
 
-                $event->sheet->getStyle('G')
-                    ->getAlignment()
-                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+                $event->sheet->getStyle('B6:G6')->getFont()
+                    ->setSize(13)
+                    ->setBold(false)
+                    ->getColor()->setRGB('#000');
 
                 $event->sheet->getDelegate()->getColumnDimension('B')->setWidth(20);
                 $event->sheet->getDelegate()->getColumnDimension('C')->setWidth(50);
@@ -118,6 +159,45 @@ class PeminjamanExport implements FromQuery,  WithMapping, WithHeadings, WithCus
                 $event->sheet->getDelegate()->getColumnDimension('E')->setWidth(50);
                 $event->sheet->getDelegate()->getColumnDimension('F')->setWidth(50);
                 $event->sheet->getDelegate()->getColumnDimension('G')->setWidth(30);
+
+
+
+                $event->sheet->getStyle('B:G')
+                    ->getAlignment()
+                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+
+
+
+                $event->sheet->styleCells(
+                    'B8:G8',
+                    [
+                        //Set border Style
+                        'borders' => [
+                            'outline' => [
+                                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                                'color' => ['argb' => '000000'],
+                            ],
+
+                        ],
+
+                        //Set font style
+                        'font' => [
+                            'name'      =>  'Calibri',
+                            'size'      =>  12,
+                            'bold'      =>  true,
+                            'color' => ['argb' => 'FFFFFF'],
+                        ],
+
+                        //Set background style
+                        'fill' => [
+                            'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                            'startColor' => [
+                                'rgb' => '4C81D9',
+                            ]
+                        ],
+
+                    ]
+                );
 
 
                 // $event->sheet->getDelegate()->getStyle('A1:G1')->getFont()->setSize(14);

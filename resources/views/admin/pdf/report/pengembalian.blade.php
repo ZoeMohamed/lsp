@@ -28,8 +28,12 @@
                                 </div>
 
                                 <div class="">
-                                    <button class="btn btn-primary col-12">
-                                        Tampilkan Data
+                                    <button class="btn btn-danger col-12 mb-3" name="file" value="pdf">
+                                        Export To PDF
+                                    </button>
+
+                                    <button class="btn btn-success col-12 mt-1" name="file" value="excel">
+                                        Export To Excel
                                     </button>
                                 </div>
                             </div>

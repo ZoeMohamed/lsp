@@ -20,7 +20,7 @@
                                 <div class="form-group">
                                     <label>Judul Buku</label>
                                     <input type="text" class="form-control" name="judul" placeholder="Judul Buku"
-                                        required value="{{ $b->judul }}" />
+                                        required value="{{ $a->judul }}" />
                                 </div>
                             </div>
 
@@ -31,7 +31,7 @@
                                         {{-- <option value="" selected>--Pilih Opsi--</option> --}}
                                         @foreach ($kategoris as $k)
                                             <option value="{{ $k->id }}"
-                                                {{ $k->id == $b->kategori->id ? 'selected' : '' }}>
+                                                {{ $k->id == $a->kategori->id ? 'selected' : '' }}>
                                                 {{ $k->nama }}</option>
                                         @endforeach
                                     </select>
@@ -44,7 +44,7 @@
 
                                     <label for="tanggal_peminjaman">Tanggal Terbit</label>
                                     <input type="date" class="form-control" name="tahun_terbit" required
-                                        value="{{ $b->tahun_terbit }}" />
+                                        value="{{ $a->tahun_terbit }}" />
 
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                 <div class="form-group">
                                     <label>ISBN</label>
                                     <input type="text" class="form-control" name="isbn" placeholder="ISBN"
-                                        value="{{ $b->isbn }}" />
+                                        value="{{ $a->isbn }}" />
                                 </div>
                             </div>
 
@@ -62,7 +62,7 @@
                                 <div class="form-group">
                                     <label>Pengarang</label>
                                     <input type="text" class="form-control" name="pengarang" placeholder="Pengarang"
-                                        required value="{{ $b->pengarang }}" />
+                                        required value="{{ $a->pengarang }}" />
                                 </div>
                             </div>
 
@@ -72,7 +72,7 @@
                                     <select class="form-select choices" name="penerbit_id" required>
                                         @foreach ($penerbits as $p)
                                             <option value="{{ $p->id }}"
-                                                {{ $p->id == $b->penerbit->id ? 'selected' : '' }}>
+                                                {{ $p->id == $a->penerbit->id ? 'selected' : '' }}>
                                                 {{ $p->nama }}</option>
                                         @endforeach
                                     </select>
@@ -84,7 +84,7 @@
                                     <label>Jumlah Buku Baik</label>
                                     <input type="number" class="form-control" name="j_buku_baik"
                                         placeholder="Jumlah Buku Baik" required min="1"
-                                        value="{{ $b->j_buku_baik }}" />
+                                        value="{{ $a->j_buku_baik }}" />
                                 </div>
                             </div>
 
@@ -93,7 +93,7 @@
                                     <label>Jumlah Buku Rusak</label>
                                     <input type="number" class="form-control" name="j_buku_rusak"
                                         placeholder="Jumlah Buku Baik" required min="1"
-                                        value="{{ $b->j_buku_rusak }}" />
+                                        value="{{ $a->j_buku_rusak }}" />
                                 </div>
                             </div>
 
