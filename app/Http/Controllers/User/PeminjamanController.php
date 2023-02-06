@@ -100,7 +100,7 @@ class PeminjamanController extends Controller
                 // Update Pemberitahuan
                 Pemberitahuan::create([
                     "isi" => Auth::user()->username . " Berhasil Meminjam Buku " . $buku->judul,
-                    "status" => "aktif"
+                    "status" => "peminjaman"
                 ]);
                 return redirect()->route('user.peminjaman.index')->with('status', 'success')->with('message', 'Berhasil Meminjam Buku');
             } else {

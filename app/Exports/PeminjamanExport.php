@@ -12,7 +12,7 @@ use Maatwebsite\Excel\Concerns\WithCustomStartCell;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Events\AfterSheet;
 
-class PeminjamanExport implements FromQuery,  WithMapping, WithHeadings, WithCustomStartCell, ShouldAutoSize, WithEvents
+class PeminjamanExport implements FromQuery,  WithMapping, WithHeadings, WithCustomStartCell,  WithEvents
 
 {
 
@@ -21,6 +21,9 @@ class PeminjamanExport implements FromQuery,  WithMapping, WithHeadings, WithCus
 
 
     private $tanggal_peminjaman;
+
+    protected $index = 1;
+
 
 
     public function __construct($tanggal_peminjaman)
@@ -35,7 +38,7 @@ class PeminjamanExport implements FromQuery,  WithMapping, WithHeadings, WithCus
         return [
             [
 
-                $peminjamans->id,
+                $this->index++,
                 $peminjamans->user->username,
                 $peminjamans->buku->judul,
                 $peminjamans->tanggal_peminjaman,
@@ -80,9 +83,41 @@ class PeminjamanExport implements FromQuery,  WithMapping, WithHeadings, WithCus
                 $event->sheet->getStyle('B1:G1')->getFont()
                     ->setSize(16)
                     ->setBold(true)
-                    ->getColor()->setRGB('0000ff');
+                    ->getColor()->setRGB('#000');
 
-                $event->sheet->getDelegate()->getColumnDimension('B')->setWidth(200);
+                $event->sheet->getStyle('B')
+                    ->getAlignment()
+                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+
+                $event->sheet->getStyle('C')
+                    ->getAlignment()
+                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+
+
+                $event->sheet->getStyle('D')
+                    ->getAlignment()
+                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+
+
+                $event->sheet->getStyle('E')
+                    ->getAlignment()
+                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+
+                $event->sheet->getStyle('F')
+                    ->getAlignment()
+                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+
+
+                $event->sheet->getStyle('G')
+                    ->getAlignment()
+                    ->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);;
+
+                $event->sheet->getDelegate()->getColumnDimension('B')->setWidth(20);
+                $event->sheet->getDelegate()->getColumnDimension('C')->setWidth(50);
+                $event->sheet->getDelegate()->getColumnDimension('D')->setWidth(50);
+                $event->sheet->getDelegate()->getColumnDimension('E')->setWidth(50);
+                $event->sheet->getDelegate()->getColumnDimension('F')->setWidth(50);
+                $event->sheet->getDelegate()->getColumnDimension('G')->setWidth(30);
 
 
                 // $event->sheet->getDelegate()->getStyle('A1:G1')->getFont()->setSize(14);

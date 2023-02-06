@@ -158,39 +158,39 @@ class AppSeeder extends Seeder
 
         // Seeder Pemberitahuan
 
-        Pemberitahuan::create([
-            "isi" => "Maaf server maintance",
-            "status" => 'nonaktif'
-        ]);
+        // Pemberitahuan::create([
+        //     "isi" => "Maaf server maintance",
+        //     "status" => 'nonaktif'
+        // ]);
 
 
-        Pemberitahuan::create([
-            "isi" => "Pengembalian Buku Paket sampai tanggal 30 Januari",
-            "status" => 'aktif'
-        ]);
+        // Pemberitahuan::create([
+        //     "isi" => "Pengembalian Buku Paket sampai tanggal 30 Januari",
+        //     "status" => 'aktif'
+        // ]);
 
-        Pemberitahuan::create([
-            "isi" => "Pengembalian Buku Paket sampai tanggal 30 Januari",
-            "status" => 'aktif'
-        ]);
-
-
-        Pemberitahuan::create([
-            "isi" => "Pengembalian Buku Paket sampai tanggal 30 Januari",
-            "status" => 'aktif'
-        ]);
+        // Pemberitahuan::create([
+        //     "isi" => "Pengembalian Buku Paket sampai tanggal 30 Januari",
+        //     "status" => 'aktif'
+        // ]);
 
 
-        Pemberitahuan::create([
-            "isi" => "Pengembalian Buku Paket sampai tanggal 30 Januari",
-            "status" => 'aktif'
-        ]);
+        // Pemberitahuan::create([
+        //     "isi" => "Pengembalian Buku Paket sampai tanggal 30 Januari",
+        //     "status" => 'aktif'
+        // ]);
 
 
-        Pemberitahuan::create([
-            "isi" => "Pengembalian Buku Paket sampai tanggal 30 Januari",
-            "status" => 'aktif'
-        ]);
+        // Pemberitahuan::create([
+        //     "isi" => "Pengembalian Buku Paket sampai tanggal 30 Januari",
+        //     "status" => 'aktif'
+        // ]);
+
+
+        // Pemberitahuan::create([
+        //     "isi" => "Pengembalian Buku Paket sampai tanggal 30 Januari",
+        //     "status" => 'aktif'
+        // ]);
 
 
 

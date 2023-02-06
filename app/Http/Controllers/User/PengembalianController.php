@@ -107,7 +107,7 @@ class PengembalianController extends Controller
         // Update Pemberitahuan
         Pemberitahuan::create([
             "isi" => Auth::user()->username . " Berhasil Mengembalikan Buku " . $buku->judul,
-            "status" => "aktif"
+            "status" => "pengembalian"
         ]);
         return redirect()->route('user.pengembalian')->with('status', 'success')->with('message', 'Berhasil Mengembalikan Buku');
     }

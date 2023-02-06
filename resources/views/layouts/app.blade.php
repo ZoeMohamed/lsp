@@ -32,7 +32,7 @@
 
 
 @php
-
+    
     use App\Models\Pesan;
     $pesan = Pesan::where('penerima_id', Auth::user()->id)
         ->where('status', 'Belum Dibaca')
@@ -193,7 +193,13 @@
                                                     <li class="dropdown-item notification-item">
                                                         <a class="d-flex align-items-center" href="#">
                                                             <div class="notification-icon bg-primary">
-                                                                <i class="bi bi-bell-fill align-middle"></i>
+
+                                                                @if ($infoPemberitahuan->status == 'peminjaman')
+                                                                    {{-- <i class="bi bi-belld-fill align-middle"></i> --}}
+                                                                    <i class="bi bi-arrow-left-right align-middle"></i>
+                                                                @else
+                                                                    <i class="bi bi-arrow-repeat align-middle"></i>
+                                                                @endif
                                                             </div>
                                                             <div class="notification-text ms-4">
 
