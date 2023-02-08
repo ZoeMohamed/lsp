@@ -19,7 +19,15 @@ class KategoriController extends Controller
     }
 
     public function store(Request $request)
+
+
+
     {
+        // $datas =  $request->all();
+        // foreach ($datas as $key => $value) {
+
+        //     dd($value);
+        // }
 
         try {
 
