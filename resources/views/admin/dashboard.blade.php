@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Dashboard Admin')
 
 @section('content')
     {{-- Scrollable --}}
@@ -35,7 +36,7 @@
     @php
         use App\Models\Pemberitahuan;
         $pemberitahuan = Pemberitahuan::all();
-
+        
     @endphp
 
     <div class="col-6 mb-3">
@@ -52,7 +53,7 @@
                                     <div class="stats-icon blue mb-2">
                                         <i class="bi-book"></i>
                                     </div>
-                                </div> 
+                                </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold">Jumlah Buku</h6>
                                     <h6 class="font-extrabold mb-0">
@@ -133,15 +134,15 @@
             </div>
         </div> --}}
 
-        <div class="col-12 text-center mt-4">
+        <div class="col-12 text-center mt-5">
 
             @php
                 use App\Models\Identitas;
                 $identitas = Identitas::first();
-
+                
             @endphp
-            <img src="{{ $identitas->foto ?? '/assets/images/not-found.png' }}" alt="" width="300" height="300"
-                class="mb-5">
+            <img src="{{ $identitas->foto ?? '/assets/images/app_image/not-found.png' }}" alt="" width="300"
+                height="300" class="mb-5">
             <h5 class="mb-4">{{ $identitas->nama_app }}</h5>
             <h5 class="mb-4">{{ $identitas->email_app }}</h5>
             <h5 class="mb-4">{{ $identitas->no_hp }}</h5>

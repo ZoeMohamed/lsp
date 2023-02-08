@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Data Administrator')
 
 @section('content')
     <style>

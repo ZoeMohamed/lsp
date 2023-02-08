@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
+@section('title', 'Data Administrator')
 
 @section('content')
     <style>
         /* .dataTable-sorter::before,
-                .dataTable-sorter::after {
-                    display: inline-block;
-                } */
+                        .dataTable-sorter::after {
+                            display: inline-block;
+                        } */
     </style>
     <div class="page-heading">
         <div class="page-title">

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'History Pengembalian Buku')
 
 @section('content')
     <div class="page-heading">

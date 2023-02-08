@@ -116,7 +116,8 @@ class AppSeeder extends Seeder
             'tahun_terbit' => '2022-09-11',
             'isbn' => '3432423',
             'j_buku_baik' => 1,
-            'j_buku_rusak' => 1
+            'j_buku_rusak' => 1,
+            'foto' => '/assets/images/app_image/perpus.jpg'
 
         ]);
 
@@ -129,7 +130,9 @@ class AppSeeder extends Seeder
             'tahun_terbit' => '2022-09-11',
             'isbn' => '9473272',
             'j_buku_baik' => 1,
-            'j_buku_rusak' => 1
+            'j_buku_rusak' => 1,
+            'foto' => '/assets/images/app_image/perpus.jpg'
+
 
         ]);
 
@@ -143,6 +146,8 @@ class AppSeeder extends Seeder
             'isbn' => '4320423',
             'j_buku_baik' => 1,
             'j_buku_rusak' => 1,
+            'foto' => '/assets/images/app_image/perpus.jpg'
+
 
         ]);
 
@@ -153,7 +158,7 @@ class AppSeeder extends Seeder
             "alamat_app" => 'JL.SMEAN 6,Cawang,Kramat Jati,Jakarta Timur',
             "email_app" => 'SMKN10@school.com',
             "nomor_hp" => '0812911',
-
+            'foto' => '/assets/images/app_image/logo_perpus.png'
         ]);
 
         // Seeder Pemberitahuan

@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard User')
 
 @section('content')
+
+
     <style>
         ::-webkit-scrollbar {
             width: 2px;
@@ -34,14 +37,22 @@
         </div>
         <section class="section">
             @foreach ($kategoris as $kategori)
-                <div class="row row-cols-1 row-cols-md-3 g-4  mb-5 d-flex flex-row flex-nowrap overflow-auto ">
+                <div class="ps-2 mb-1">
+                    <span class="badge bg-primary badge-pill badge-round float-right mt-60">
+                        {{ $kategori->nama }}
+                    </span>
+                </div>
+
+                <div class="row row-cols-1 row-cols-md-3 g-4  mb-5 d-flex flex-row flex-nowrap overflow-auto ms-1 ">
+
+
                     {{-- Foreach Kategori --}}
                     @foreach ($kategori->bukus as $b)
-                        <div class="col-xl-3 col-md-6 col-sm-12 g-4  py-3">
+                        <div class="col-xl-3 col-md-6 col-sm-12 g-4 py-2 {{ $loop->iteration == 1 ? 'ps-0' : '' }}">
                             <div class="card h-100">
                                 <div class="card-content">
-                                    <img src="{{ $b->foto ?? '/assets/images/not-found.png' }}" class="card-img-top "
-                                        alt="singleminded" style="height: 220px;object-fit: cover;">
+                                    <img src="{{ $b->foto ?? '/assets/images/app_images/not-found.png' }}"
+                                        class="card-img-top " alt="singleminded" style="height: 220px;object-fit: cover;">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $b->judul }}</h5>
                                         <span class="badge bg-light-primary badge-pill badge-round float-right mt-60">

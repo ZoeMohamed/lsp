@@ -120,7 +120,9 @@
                                                             <button class="dropdown-item" type="submit">
                                                                 <div class="row  align-items-center">
                                                                     <div class="avatar avatar-md col-2 ">
-                                                                        <img src="{{ asset($p->pengirim->foto) }}">
+
+                                                                        <img
+                                                                            src="{{ $p->pengirim->foto != null ? asset($p->pengirim->foto) : '/assets/images/app_image/avatar.jpg' }}">
                                                                     </div>
                                                                     <div class="col-6">
                                                                         <p class="mb-0 font-bold">
@@ -145,7 +147,8 @@
                                                             <button class="dropdown-item" type="submit">
                                                                 <div class="row  align-items-center">
                                                                     <div class="avatar avatar-md col-2 ">
-                                                                        <img src="{{ asset($p->pengirim->foto) }}">
+                                                                        <img
+                                                                            src="{{ asset($p->pengirim->foto ?? '/app_image/avatar.jpg') }}">
                                                                     </div>
                                                                     <div class="col-6">
                                                                         <p class="mb-0 font-bold">

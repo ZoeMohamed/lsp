@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('title', 'Data Buku')
 
 @section('content')
     <div class="page-heading">
@@ -54,7 +55,7 @@
 
                                     <td class="align-middle">{{ $loop->iteration }}</td>
                                     <td class="align-middle">
-                                        <img src="{{ $b->foto ?? '/assets/images/not-found.png' }}" alt=""
+                                        <img src="{{ $b->foto ?? '/assets/images/app_image/not-found.png' }}" alt=""
                                             width="100" height="100">
                                     </td>
 
