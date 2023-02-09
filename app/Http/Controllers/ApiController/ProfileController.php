@@ -22,36 +22,92 @@ class ProfileController extends Controller
 
     public function update_profile(Request $request)
     {
+        $request_datas = $request->except('foto');
 
-        $id = Auth::user()->id;
+
+
+        // dd($request_datas);
 
         if ($request->foto != null) {
-            $imageName = time() . '.' . $request->foto->extension();
+
+
+            $imageName = $request->foto->getClientOriginalName();
 
             $request->foto->move(public_path('img'), $imageName);
 
-            $user = User::find(Auth::user()->id)->update($request->all());
 
-            $user2 = User::find($id)->update([
-                "foto" => "/img/" . $imageName
-            ]);
 
-            if ($user && $user2) {
-                return response()->json([
-                    "message" => "Berhasil Mengubah Profile"
-                ]);
-            }
+            $request_datas['foto'] = "/img/" . $imageName;
+
+
+
+
+            $updated = tap(User::where('id', Auth::user()->id))
+                ->update($request_datas)->first();
+
+
+            return response()->json(
+                [
+                    'message' => "Berhasil Update Profil",
+                    "data" => $updated
+                ]
+            );
         } else {
-            $user = User::find(Auth::user()->id)->update($request->all());
 
-            return response()->json([
-                "message" => "Berhasil Mengubah Profile"
-            ]);
+            $updated = tap(User::where('id', Auth::user()->id))
+                ->update($request_datas)->first();
+
+
+            $request_datas['foto'] = null;
+
+
+            return response()->json(
+                [
+                    'message' => "Berhasil Update Profil",
+                    "data" => $updated
+                ]
+            );
         }
 
-
         return response()->json([
-            "message" => "Gagal Mengubah Profile"
+            'message' => "Gagal Update Profil"
         ]);
     }
 }
+
+
+
+// $imageName = time() . '.' . $request->foto->extension();
+
+// $request->foto->move(public_path('img'), $imageName);
+
+// $user =  tap(User::where('id', Auth::user()->id))
+//     ->update($request->all())
+//     ->first();
+
+// $user2 = User::find($id)->update([
+//     "foto" => "/img/" . $imageName
+// ]);
+
+// if ($user && $user2) {
+//     return response()->json([
+//         "message" => "Berhasil Mengubah Profile",
+//         "data" => $user
+//     ]);
+// }
+// } else {
+// $final = tap(User::where('id', Auth::user()->id))
+//     ->update($request->all())
+//     ->first();
+
+// return response()->json([
+//     "message" => "Berhasil Mengubah Profile",
+//     "data" => $final
+// ]);
+// }
+
+
+// return response()->json([
+// "message" => "Gagal Mengubah Profile"
+// ]);
+// }
