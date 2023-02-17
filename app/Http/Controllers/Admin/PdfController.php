@@ -67,7 +67,7 @@ class PdfController extends Controller
             $pdf = PDF::loadView('admin.pdf.pengembalian', [
                 'datas' => $query,
                 'identitas' => $identitas,
-                'tanggal_pengembalian'
+                'tanggal_pengembalian' => $request->tanggal_pengembalian
 
             ]);
 

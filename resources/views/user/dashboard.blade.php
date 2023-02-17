@@ -36,15 +36,18 @@
             </div>
         </div>
         <section class="section">
+
+            
             @foreach ($kategoris as $kategori)
-                <div class="ps-2 mb-1">
-                    <span class="badge bg-primary badge-pill badge-round float-right mt-60">
-                        {{ $kategori->nama }}
-                    </span>
-                </div>
+                @if (count($kategori->bukus) != 0)
+                    <div class="ps-2 mb-1">
+                        <span class="badge bg-primary badge-pill badge-round float-right mt-60">
+                            {{ $kategori->nama }}
+                        </span>
+                    </div>
+                @endif
 
                 <div class="row row-cols-1 row-cols-md-3 g-4  mb-5 d-flex flex-row flex-nowrap overflow-auto ms-1 ">
-
 
                     {{-- Foreach Kategori --}}
                     @foreach ($kategori->bukus as $b)

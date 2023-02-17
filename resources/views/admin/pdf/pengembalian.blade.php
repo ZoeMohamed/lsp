@@ -80,7 +80,7 @@
                 @endforeach
             </tbody>
         </table>
-        <h5 style="text-align:center;margin-top:25px;">Laporan Pengembalian : {{ $tanggal_pengembalian }}</h5>
+        <h5 style="text-align:center;margin-top:25px;">Laporan Pengembalian : {{ $d->tanggal_pengembalian }}</h5>
     @else
         <table class="center">
             <thead>

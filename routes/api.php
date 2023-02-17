@@ -43,6 +43,7 @@ Route::middleware(['auth:sanctum', 'role:user'])->prefix('user')->group(function
 
     // User Profile Update
 
+
     Route::prefix('profile')->controller(App\Http\Controllers\ApiController\ProfileController::class)->group(function () {
         Route::post('update', 'update_profile');
         Route::get('/', 'show_profile');
@@ -56,6 +57,8 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::post('logout', [App\Http\Controllers\ApiController\UserController::class, 'logout']);
 
     // Buku
+
+    
     Route::prefix('buku')->controller(App\Http\Controllers\ApiController\BukuController::class)->group(function () {
         Route::post('store', 'store');
         Route::post('update/{id}', 'update');

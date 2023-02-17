@@ -59,7 +59,7 @@ class PeminjamanController extends Controller
 
 
             if ($unique_buku != null) {
-                return redirect()->route('user.peminjaman.index')->with('status', 'danger')->with('message', 'Gagal Meminjam Buku Tidak bisa meminjam buku dengan judul yang sama');
+                return redirect()->route('user.peminjaman.index')->with('status', 'danger')->with('message', 'Gagal Meminjam Buku Tidak Bisa Meminjam Buku Yang Belum Dikembalikan');
             }
 
 
