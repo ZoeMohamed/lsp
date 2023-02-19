@@ -146,7 +146,7 @@ class AppSeeder extends Seeder
             'isbn' => '4320423',
             'j_buku_baik' => 1,
             'j_buku_rusak' => 1,
-            'foto' => '/assets/images/app_image/perpus.jpg'
+            'foto' => null
 
 
         ]);

@@ -35,7 +35,7 @@ Route::get('/home', function () {
 })->middleware('auth');
 
 
-Route::group(['middleware' => 'auth',], function () {
+Route::group(['middleware' => 'auth'], function () {
     // User Route
     Route::prefix('/user')->group(function () {
 

@@ -37,7 +37,7 @@
         </div>
         <section class="section">
 
-            
+
             @foreach ($kategoris as $kategori)
                 @if (count($kategori->bukus) != 0)
                     <div class="ps-2 mb-1">
@@ -54,8 +54,8 @@
                         <div class="col-xl-3 col-md-6 col-sm-12 g-4 py-2 {{ $loop->iteration == 1 ? 'ps-0' : '' }}">
                             <div class="card h-100">
                                 <div class="card-content">
-                                    <img src="{{ $b->foto ?? '/assets/images/app_images/not-found.png' }}"
-                                        class="card-img-top " alt="singleminded" style="height: 220px;object-fit: cover;">
+                                    <img src="/assets/images/app_image/not-found.png" class="card-img-top "
+                                        alt="singleminded" style="height: 220px;object-fit: cover;">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $b->judul }}</h5>
                                         <span class="badge bg-light-primary badge-pill badge-round float-right mt-60">
